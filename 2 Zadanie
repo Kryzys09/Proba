@@ -1,0 +1,10 @@
+#!/bin/bash
+
+for x in `ls -p /proc/ | grep "[0-9]"`
+do
+echo `cat /proc/$x/status | grep "Name:"`
+echo `cat /proc/$x/status | grep "Pid:"`
+echo `cat /proc/$x/status | grep "State:"`
+echo "files open: `sudo ls -l /proc/$x/fd | wc -l`"
+echo
+done

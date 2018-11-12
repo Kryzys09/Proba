@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "Cat image:"
+wget -q $(curl -s "http://api.thecatapi.com/api/images/get?format=xml&results_per_page=1" | xmllint --xpath "string(//url)" -) -O "o.xml"
+img2txt "o.xml"
+rm "o.xml"
+
+echo -e "\rJoke:"
+curl -s "http://api.icndb.com/jokes/random" | jq ".value.joke"

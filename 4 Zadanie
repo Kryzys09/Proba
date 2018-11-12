@@ -1,0 +1,20 @@
+#!/bin/bash
+
+URL=$1
+TIME=$2
+for ((;;))
+do
+	if [ ! -e ${HOME}/Desktop/'2 Semestr'/AKISO/'3 Lista'/.temp ]; then
+		`lynx -dump $URL > ${HOME}/Desktop/'2 Semestr'/AKISO/'3 Lista'/.temp`
+	else
+		`lynx -dump $URL > ${HOME}/Desktop/'2 Semestr'/AKISO/'3 Lista'/.temp2`
+		difference=$(diff ${HOME}/Desktop/'2 Semestr'/AKISO/'3 Lista'/.temp ${HOME}/Desktop/'2 Semestr'/AKISO/'3 Lista'/.temp2)
+		if [ $difference="" ]; then
+			echo "no changes"
+		else
+			echo $difference
+			mv ${HOME}/Desktop/'2 Semestr'/AKISO/'3 Lista'/.temp2 ${HOME}/Desktop/'2 Semestr'/AKISO/'3 Lista'/.temp
+		fi
+	fi
+	sleep $2
+done
